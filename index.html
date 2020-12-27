@@ -103,16 +103,16 @@
       const myInput = document.querySelector("#myText");
       const array = [];
       // this is if i want to use the input field:
-      /*function sendMsg() {
+      function sendMsg() {
           let myInputValue = myInput.value;
           console.log(`Message to server : ${myInputValue}`);
           socket.emit("message", myInputValue);
-        }*/
+        }
 
-      function sendMsg(code) {
-        console.log(`Message to server : ${code}`);
-        socket.emit("message", code);
-      }
+      // function sendMsg(code) {
+      //   console.log(`Message to server : ${code}`);
+      //   socket.emit("message", code);
+      // }
 
       function makeid(length) {
         var result = "";
@@ -128,9 +128,9 @@
       }
 
       // here send number mesages t the server:
-      setInterval(() => {
-        sendMsg(makeid(15));
-      }, 5000);
+      // setInterval(() => {
+      //   sendMsg(makeid(15));
+      // }, 5000);
 
       socket.on("message", function (data) {
         console.log(data);
