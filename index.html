@@ -97,20 +97,21 @@
     ></script>
 
     <script type="text/javascript">
-     let socket = io("http://localhost:8080");
+      // import { v4 as uuidv4 } from 'uuid';
+      const socket = io("http://localhost:8080");
       const myInput = document.querySelector("#myText");
       const array = [];
       // this is if i want to use the input field:
       function sendMsg() {
           let myInputValue = myInput.value;
           console.log(`Message to server : ${myInputValue}`);
-          socket.emit("message", "daniel", myInputValue);
+          socket.emit("message","daniel", myInputValue, 'user');
         }
 
-      // function sendMsg(code) {
-      //   console.log(`Message to server : ${code}`);
-      //   socket.emit("message", code);
-      // }
+      function sendAutomatedMessage(code) {
+        console.log(`Automated Message to server : ${code}`);
+        socket.emit("message", "!JavascriptScript!", `Automated message sent by the client, Yes this chat is still active!! , random id = ${code}`, 'automator');
+      }
 
       function makeid(length) {
         var result = "";
@@ -126,15 +127,16 @@
       }
 
       // here send number mesages t the server:
-      // setInterval(() => {
-      //   sendMsg(makeid(15));
-      // }, 5000);
+      setInterval(() => {
+        sendAutomatedMessage(makeid(15));
+      }, 5000);
 
-      socket.on("message", function (data) {
+      socket.on("message", function (username,message,  usertype) {
         console.log(data);
-
+        let data2 = `${data.username}: ${data.message}`
         // first pass the data into the array:
-        array.push(data);
+        array.push(data2);
+        console.log(array);
 
         // get the ui items:
         const ul = document.querySelector("#list");

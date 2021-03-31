@@ -21,7 +21,7 @@ async def index(request):
 # use this decorator, passing in the name of the
 # event we wish to listen out for
 @sio.on('message')
-async def print_message(sid,username, message):
+async def print_message(sid,username, message, usertype):
     # When we receive a new event of type
     # 'message' through a socket.io connection
     # we print the socket ID and the message
@@ -29,7 +29,7 @@ async def print_message(sid,username, message):
     # print(message)
     # printableMessage  = "Socket ID: {sid},  {username} is: {username}, message is: , {message}".format(sid, username, message)
     # print(printableMessage)
-    await sio.emit('message', "From server: "+message)
+    await sio.emit('message', username,message,  usertype)
 
 
 # We bind our aiohttp endpoint to our app
