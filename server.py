@@ -8,6 +8,7 @@ sio = socketio.AsyncServer()
 app = web.Application()
 
 #bind the socketio server to the web application:
+# comment to test
 sio.attach(app)
 
 
@@ -20,12 +21,14 @@ async def index(request):
 # use this decorator, passing in the name of the
 # event we wish to listen out for
 @sio.on('message')
-async def print_message(sid, message):
+async def print_message(sid,username, message):
     # When we receive a new event of type
     # 'message' through a socket.io connection
     # we print the socket ID and the message
-    print("Socket ID: " , sid)
-    print(message)
+    print("Socket ID: " , sid, " username is: ", username, ", message is: ", message)
+    # print(message)
+    # printableMessage  = "Socket ID: {sid},  {username} is: {username}, message is: , {message}".format(sid, username, message)
+    # print(printableMessage)
     await sio.emit('message', "From server: "+message)
 
 
@@ -36,5 +39,3 @@ app.router.add_get('/', index)
 # We kick off our server
 if __name__ == '__main__':
     web.run_app(app)
-
-          # app.run(host='0.0.0.0', port=80)

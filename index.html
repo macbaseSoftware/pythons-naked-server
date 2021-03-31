@@ -97,15 +97,14 @@
     ></script>
 
     <script type="text/javascript">
-      // import { v4 as uuidv4 } from 'uuid';
-      const socket = io("http://localhost:8080");
+     let socket = io("http://localhost:8080");
       const myInput = document.querySelector("#myText");
       const array = [];
       // this is if i want to use the input field:
       function sendMsg() {
           let myInputValue = myInput.value;
           console.log(`Message to server : ${myInputValue}`);
-          socket.emit("message", myInputValue);
+          socket.emit("message", "daniel", myInputValue);
         }
 
       // function sendMsg(code) {
