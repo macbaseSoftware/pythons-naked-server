@@ -36,3 +36,5 @@ app.router.add_get('/', index)
 # We kick off our server
 if __name__ == '__main__':
     web.run_app(app)
+
+          # app.run(host='0.0.0.0', port=80)
