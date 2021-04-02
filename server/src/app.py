@@ -8,3 +8,7 @@ def index():
 @app.route('/users')
 def users():
     return 'Users!'
+
+    
+if __name == '__main__':
+    app.run(debug=True, host='0.0.0.0')
