@@ -1,11 +1,11 @@
 from flask import Flask, Blueprint
-from main_blueprint import main_blueprint
+from routes.main_blueprint import *
+from routes.engine_blueprint import *
 
 app = Flask(__name__)
 app.register_blueprint(main_blueprint)
+app.register_blueprint(engine_blueprint, url_prefix='/engine')
 
-# we can register routes with specific prefix
-# app.register_blueprint(urls2_blueprint, url_prefix='/urls2')
 
 
 if __name__ == '__main__':
